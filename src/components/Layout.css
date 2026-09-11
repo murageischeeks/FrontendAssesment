@@ -1,0 +1,94 @@
+/* ─── App Shell ──────────────────────────────────────────────── */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem 0;
+}
+
+/* ─── Top Bar ─────────────────────────────────────────────────── */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
+  border-bottom: 1px solid var(--clr-border);
+  /* subtle backdrop blur — gives it a "real app" feel */
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+
+.topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--clr-brand);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity var(--transition);
+}
+.topbar__brand:hover {
+  opacity: 0.8;
+}
+
+.topbar__user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Initials avatar */
+.topbar__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--clr-brand-light);
+  color: var(--clr-brand-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.topbar__name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--clr-muted);
+}
+
+.topbar__logout {
+  padding: 0.35rem 0.75rem;
+}
+
+/* ─── Footer ──────────────────────────────────────────────────── */
+.footer {
+  border-top: 1px solid var(--clr-border);
+  padding: 1rem 0;
+  font-size: 0.78rem;
+  color: var(--clr-muted);
+}
+
+/* ─── Responsive: hide name on mobile ────────────────────────── */
+@media (max-width: 480px) {
+  .topbar__name {
+    display: none;
+  }
+}
