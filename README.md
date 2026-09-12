@@ -3,7 +3,7 @@
 A stock management console for clinic supply teams, built with React and TypeScript.  
 It connects to [DummyJSON](https://dummyjson.com) as a mock backend and is deployed on Vercel.
 
-> **Live app:** _Add your Vercel URL here after deploying_  
+> **Live app:** [https://frontend-assesment-bi9w.vercel.app](https://frontend-assesment-bi9w.vercel.app)  
 > **Test credentials:** `emilys` / `emilyspass`
 
 ---
