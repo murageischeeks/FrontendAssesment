@@ -4,7 +4,7 @@ import { fetchProducts } from '../api/dummyjson';
 describe('Search Race Condition Prevention', () => {
   it('should abort the fetch request when signal is aborted', async () => {
     // Mock global fetch
-    const fetchMock = vi.fn().mockImplementation((url, options) => {
+    const fetchMock = vi.fn().mockImplementation((_url, options) => {
       return new Promise((resolve, reject) => {
         if (options?.signal) {
           options.signal.addEventListener('abort', () => {
