@@ -36,9 +36,10 @@
   padding-left: 2.1rem;
 }
 
-/* Dropdowns */
+/* Dropdowns — override the global .input { width: 100% } so they
+   don't each fill an entire flex row */
 .toolbar__select {
-  width: auto;
+  width: auto !important;
   min-width: 140px;
   flex-shrink: 0;
 }
