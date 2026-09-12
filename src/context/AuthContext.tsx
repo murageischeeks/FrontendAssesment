@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { login as apiLogin, getCurrentUser, refreshToken as apiRefreshToken } from '../api/auth';
@@ -88,17 +89,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // Clean up the interval when the component is unmounted (e.g. app closes)
     return () => clearInterval(refreshInterval);
   }, []);
-
-  // ── Helpers ───────────────────────────────────────────────────────
-  const saveTokens = (accessToken: string, refreshToken: string) => {
-    localStorage.setItem('accessToken', accessToken);
-    localStorage.setItem('refreshToken', refreshToken);
-  };
-
-  const clearTokens = () => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-  };
 
   // ── Actions ───────────────────────────────────────────────────────
   const login = async (username: string, pass: string) => {

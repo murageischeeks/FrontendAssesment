@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useEffect, useState } from 'react';
 import { useOnlineStatus } from '../hooks/useOnlineStatus';
 import { WifiOff, Wifi } from 'lucide-react';

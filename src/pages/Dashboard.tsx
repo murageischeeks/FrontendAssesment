@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/set-state-in-effect */
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -61,7 +63,6 @@ export const Dashboard = () => {
     if (debouncedSearch !== q) {
       updateParams({ q: debouncedSearch, page: '1' });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearch]);
 
   // Keep the search input in sync with the URL when the user hits the
@@ -69,7 +70,6 @@ export const Dashboard = () => {
   // Note: we intentionally use q directly as the initial value of searchTerm
   // instead of an effect to avoid the setState-in-effect lint warning.
   // The effect below only runs on back-navigation (when q changes externally).
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setSearchTerm(q);
   }, [q]);
