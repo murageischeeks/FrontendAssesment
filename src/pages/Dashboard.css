@@ -33,7 +33,7 @@
 }
 
 .search-input {
-  padding-left: 2.1rem;
+  padding-left: 2.2rem !important;
 }
 
 /* Dropdowns — override the global .input { width: 100% } so they
