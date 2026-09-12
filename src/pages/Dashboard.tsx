@@ -22,6 +22,17 @@ function stockBadgeClass(stock: number) {
   return 'badge badge-green';
 }
 
+// Product shape from DummyJSON
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  stock: number;
+  category: string;
+  thumbnail: string;
+}
+
 export const Dashboard = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -31,6 +42,14 @@ export const Dashboard = () => {
   const q = searchParams.get('q') || '';
   const category = searchParams.get('category') || '';
   const sort = searchParams.get('sort') || '';
+
+  // Helper: update one or more URL params without losing the rest.
+  // Defined early so the useEffects below can safely reference it.
+  const updateParams = (next: Record<string, string>) => {
+    const p = new URLSearchParams(searchParams);
+    Object.entries(next).forEach(([k, v]) => (v ? p.set(k, v) : p.delete(k)));
+    setSearchParams(p);
+  };
 
   // Search box has its own local state so typing feels instant.
   // The URL only updates after the user pauses (debounce below).
@@ -42,9 +61,15 @@ export const Dashboard = () => {
     if (debouncedSearch !== q) {
       updateParams({ q: debouncedSearch, page: '1' });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearch]);
 
-  // If the user hits the browser back button, restore the input from the URL
+  // Keep the search input in sync with the URL when the user hits the
+  // browser back button. We initialise from the URL on first render too.
+  // Note: we intentionally use q directly as the initial value of searchTerm
+  // instead of an effect to avoid the setState-in-effect lint warning.
+  // The effect below only runs on back-navigation (when q changes externally).
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setSearchTerm(q);
   }, [q]);
@@ -71,13 +96,6 @@ export const Dashboard = () => {
     // Keep showing the old results while new ones load, instead of a blank flash
     placeholderData: (prev) => prev,
   });
-
-  // Helper: update one or more URL params without losing the rest
-  const updateParams = (next: Record<string, string>) => {
-    const p = new URLSearchParams(searchParams);
-    Object.entries(next).forEach(([k, v]) => (v ? p.set(k, v) : p.delete(k)));
-    setSearchParams(p);
-  };
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     updateParams({ category: e.target.value, page: '1', q: '' });
@@ -210,7 +228,7 @@ export const Dashboard = () => {
 
           {/* Grid */}
           <div className="stock-grid">
-            {data.products.map((p: any) => (
+            {data.products.map((p: Product) => (
               <button
                 key={p.id}
                 className="stock-card card"

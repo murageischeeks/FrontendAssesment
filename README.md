@@ -20,6 +20,8 @@ npm run dev
 
 Open `http://localhost:5173`. The login screen will appear first.
 
+> **Testing the offline indicator:** Open DevTools → Network tab → set throttle to **Offline**. A banner will slide in at the top of the screen. Switch back to Online and watch it confirm reconnection before disappearing.
+
 ### Available scripts
 
 | Command | What it does |

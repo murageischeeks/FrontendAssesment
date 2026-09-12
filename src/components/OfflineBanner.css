@@ -1,0 +1,43 @@
+/* ─── Offline / Reconnected Banner ───────────────────────────────
+   Sits at the very top of the viewport, above everything else.
+   Slides in from the top when it appears.
+*/
+.offline-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  /* Slide in from the top */
+  animation: slideDown 0.25s ease both;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Offline state — amber/warning colour */
+.offline-banner--offline {
+  background: #92400e;
+  color: #fef3c7;
+}
+
+/* Reconnected state — green confirmation */
+.offline-banner--online {
+  background: var(--clr-brand);
+  color: #fff;
+}

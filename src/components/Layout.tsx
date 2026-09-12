@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { LogOut, Stethoscope } from 'lucide-react';
+import { OfflineBanner } from './OfflineBanner';
 import './Layout.css';
 
 export const Layout = () => {
@@ -15,6 +16,8 @@ export const Layout = () => {
 
   return (
     <div className="app-shell">
+      {/* Appears at the very top whenever the device loses connectivity */}
+      <OfflineBanner />
       <header className="topbar">
         <div className="container topbar__inner">
           {/* Logo / Brand */}

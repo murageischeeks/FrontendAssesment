@@ -25,7 +25,10 @@ export const ItemDetail = () => {
     enabled: !!id,
   });
 
-  // Pre-fill the input once we have data
+  // Pre-fill the stock input once the product data loads from the API.
+  // We use useEffect here because we need to wait for the async data —
+  // this is one of the valid cases for setting state inside an effect.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
     if (product) setStockInput(String(product.stock));
   }, [product]);
