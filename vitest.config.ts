@@ -8,5 +8,6 @@ export default defineConfig({
     setupFiles: ['./src/setupTests.ts'],
     globals: true,
     passWithNoTests: true,
+    pool: 'threads',
   },
 });
